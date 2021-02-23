@@ -157,7 +157,8 @@ The TypeScript model classes are created as described in the [Sequelize manual](
 Example model class, `order.ts`:
 
 ```js
-import Sequelize, { DataTypes, Model, Optional } from 'sequelize';
+import { Sequelize, DataTypes, Model } from 'sequelize';
+type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 import type { Customer, CustomerId } from './customer';
 import type { OrderItem, OrderItemId } from './order_item';
 
@@ -200,7 +201,7 @@ export class Order extends Model<OrderAttributes, OrderCreationAttributes> imple
   hasOrderItems!: Sequelize.HasManyHasAssociationsMixin<OrderItem, OrderItemId>;
   countOrderItems!: Sequelize.HasManyCountAssociationsMixin;
 
-  static initModel(sequelize: Sequelize.Sequelize): typeof Order {
+  static initModel(sequelize: Sequelize): typeof Order {
     Order.init({
     id: {
       autoIncrement: true,
