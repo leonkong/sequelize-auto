@@ -1,5 +1,5 @@
 {
-  "name": "sequelize-auto",
+  "name": "@tytx/sequelize-auto",
   "version": "0.7.11",
   "publishConfig": {
     "tag": "latest"
